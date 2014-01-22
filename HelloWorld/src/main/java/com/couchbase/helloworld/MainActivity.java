@@ -33,20 +33,20 @@ public class MainActivity extends ActionBarActivity {
         }
 
         final String TAG = "HelloWorld";
-        Log.d (TAG, "Begin Hello World App");
+        Log.d(TAG, "Begin Hello World App");
 
         // create a manager
         Manager manager = null;
         try {
             manager = new Manager(getApplicationContext().getFilesDir(), Manager.DEFAULT_OPTIONS);
         } catch (IOException e) {
-            Log.e ("HelloWorld:", "Cannot create manager object");
+            Log.e("HelloWorld:", "Cannot create manager object");
         }
 
         // create a name for the database and make sure the name is legal
         String dbname = "hello";
         if (!Manager.isValidDatabaseName(dbname)) {
-            Log.e ("HelloWorld:", "Bad database name");
+            Log.e("HelloWorld:", "Bad database name");
             return;
         }
 
@@ -64,7 +64,7 @@ public class MainActivity extends ActionBarActivity {
         docContent.put("creationDate", currentTimeString);
 
         // display the data for the new document
-        Log.d ("HelloWorld:", String.valueOf(docContent));
+        Log.d("HelloWorld:", "docContent=" + String.valueOf(docContent));
 
         // create an empty document
         Document document = database.createDocument();
@@ -73,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
         try {
             document.putProperties(docContent);
         } catch (CouchbaseLiteException e) {
-            Log.e (TAG, "Cannot write document to database", e);
+            Log.e(TAG, "Cannot write document to database", e);
         }
 
         // save the ID of the new document
@@ -83,9 +83,9 @@ public class MainActivity extends ActionBarActivity {
         Document retrievedDocument = database.getDocument(docID);
 
         // display the retrieved document
-        Log.d (TAG, String.valueOf(retrievedDocument.getProperties()));
+        Log.d(TAG, "retrievedDocument=" + String.valueOf(retrievedDocument.getProperties()));
 
-        Log.d (TAG, "End Hello World App");
+        Log.d(TAG, "End Hello World App");
 
     }
 
