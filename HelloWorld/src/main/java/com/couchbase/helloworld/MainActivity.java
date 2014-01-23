@@ -19,6 +19,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class MainActivity extends ActionBarActivity {
 
     @Override
@@ -40,13 +41,14 @@ public class MainActivity extends ActionBarActivity {
         try {
             manager = new Manager(getApplicationContext().getFilesDir(), Manager.DEFAULT_OPTIONS);
         } catch (IOException e) {
-            Log.e("HelloWorld:", "Cannot create manager object");
+            Log.e(TAG, "Cannot create manager object");
+            return;
         }
 
         // create a name for the database and make sure the name is legal
         String dbname = "hello";
         if (!Manager.isValidDatabaseName(dbname)) {
-            Log.e("HelloWorld:", "Bad database name");
+            Log.e(TAG, "Bad database name");
             return;
         }
 
@@ -64,7 +66,7 @@ public class MainActivity extends ActionBarActivity {
         docContent.put("creationDate", currentTimeString);
 
         // display the data for the new document
-        Log.d("HelloWorld:", "docContent=" + String.valueOf(docContent));
+        Log.d(TAG, "docContent=" + String.valueOf(docContent));
 
         // create an empty document
         Document document = database.createDocument();
