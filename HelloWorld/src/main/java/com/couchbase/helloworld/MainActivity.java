@@ -53,7 +53,13 @@ public class MainActivity extends ActionBarActivity {
         }
 
         // create a new database
-        Database database = manager.getDatabase(dbname);
+        Database database = null;
+        try {
+            database = manager.getDatabase(dbname);
+        } catch (CouchbaseLiteException e) {
+            Log.e(TAG, "Cannot get database");
+            return;
+        }
 
         // get the current date and time
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
